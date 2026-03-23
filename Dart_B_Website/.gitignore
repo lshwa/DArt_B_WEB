@@ -1,0 +1,64 @@
+# Environment files (contain secrets)
+.env
+.env.local
+.env.production
+.env.*.local
+backend/.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+ENV/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+frontend/dist/
+*.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Uploads (keep folder structure but ignore contents)
+backend/uploads/members/*
+backend/uploads/logos/*
+backend/uploads/images/*
+!backend/uploads/members/.gitkeep
+!backend/uploads/logos/.gitkeep
+!backend/uploads/images/.gitkeep
+
+# Secrets / local credentials
+*.pem
+*.key
+backend/*.json
+.claude/settings.local.json
