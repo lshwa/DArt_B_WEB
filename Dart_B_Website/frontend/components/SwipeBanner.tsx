@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import dartb_night from '../assets/images/데이터톤.jpeg';
+import dartb_webzine from '../assets/images/중앙대.jpeg';
+import dartb_data_thon from '../assets/images/중앙대.jpeg';
 
 interface SwipeBannerProps {
   onNavigate: (page: string) => void;
@@ -15,7 +18,7 @@ export function SwipeBanner({ onNavigate }: SwipeBannerProps) {
       id: 1,
       title: '다트비의 밤',
       description: '학술적 교류를 넘어 진정한 공동체 문화를 만들어갑니다',
-      image: 'https://images.unsplash.com/photo-1641385988508-460767e2b71a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXJ0eSUyMGNlbGVicmF0aW9uJTIwbmlnaHQlMjBldmVudHxlbnwxfHx8fDE3NTk1NzY4MzR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: dartb_night,
       page: 'networking'
     },
     {
