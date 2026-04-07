@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useSiteTextContext } from "../src/SiteTextContext";
 import campusImg from '../assets/images/중앙대.jpeg';
 
+// https://images.unsplash.com/photo-1702737832079-ed5864397f92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwY2FtcHVzJTIwa29yZWF8ZW58MXx8fHwxNzU5NTcyOTY1fDA&ixlib=rb-4.1.0&q=80&w=1080
+
 export function MainBanner() {
   const [isHovered, setIsHovered] = useState(false);
   const { getText } = useSiteTextContext();
