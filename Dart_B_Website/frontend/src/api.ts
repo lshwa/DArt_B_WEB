@@ -3,7 +3,7 @@ const getApiBaseUrl = (): string => {
   // Vite exposes env vars via import.meta.env
   const envUrl = import.meta.env.VITE_API_BASE_URL;
   if (envUrl) {
-    return `${envUrl}/api/v1`;
+    return envUrl;
   }
   // Fallback for development
   return 'http://localhost:8000/api/v1';
@@ -14,7 +14,8 @@ const API_BASE_URL = getApiBaseUrl();
 // Backend base URL (without /api/v1) for static files
 const getBackendBaseUrl = (): string => {
   const envUrl = import.meta.env.VITE_API_BASE_URL;
-  return envUrl || 'http://localhost:8000';
+  if (!envUrl) return 'http://localhost:8000';
+  return envUrl.replace(/\/api\/v1$/, '');
 };
 
 // API 응답 타입
@@ -131,7 +132,7 @@ async function apiCall<T>(
   options: RequestInit = {}
 ): Promise<ApiResponse<T>> {
   const token = getToken();
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     ...options.headers,
   };
