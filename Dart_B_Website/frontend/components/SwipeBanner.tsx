@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import dartb_night from '../assets/images/데이터톤.jpeg';
+import dartb_night from '../assets/images/다트비의 밤.jpg';
 import dartb_webzine from '../assets/images/중앙대.jpeg';
-import dartb_data_thon from '../assets/images/중앙대.jpeg';
+import dartb_data_thon from '../assets/images/데이터톤.jpeg';
 
 interface SwipeBannerProps {
   onNavigate: (page: string) => void;
@@ -32,7 +32,7 @@ export function SwipeBanner({ onNavigate }: SwipeBannerProps) {
       id: 3,
       title: 'DArt-B DATA-THON',
       description: '다트비의 데이터톤을 소개한 기록',
-      image: 'https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwaGFja2F0aG9uJTIwY29tcGV0aXRpb258ZW58MXx8fHwxNzU5NTc1MjcxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: dartb_data_thon,
       page: 'data-thon'
     }
   ];
