@@ -2,6 +2,7 @@ import React from 'react';
 import { PageBanner } from '../common/PageBanner';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useSiteTextContext } from '../../src/SiteTextContext';
+import prof_pict from '../../assets/images/교수님증명사진.png';
 
 export function Preface() {
   const { getText } = useSiteTextContext();
@@ -49,8 +50,12 @@ export function Preface() {
 
             {/* Right Side - Professor Photo */}
             <div>
-              <div className="bg-gray-200 rounded-[10px] h-80 flex items-center justify-center text-gray-500">
-                교수님 증명사진
+              <div className="bg-gray-200 rounded-[10px] h-80 overflow-hidden">
+                <img
+                  src={prof_pict}
+                  alt="교수님 증명사진"
+                  className="w-full h-full object-cover"
+                />  
               </div>
             </div>
           </div>
