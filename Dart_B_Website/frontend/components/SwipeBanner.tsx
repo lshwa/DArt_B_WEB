@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import dartb_night from '../assets/images/다트비의 밤.jpg';
-import dartb_webzine from '../assets/images/중앙대.jpeg';
+import dartb_webzine from '../assets/images/다트비_웹진.png'; // 이미지 추가 해야 함. 
 import dartb_data_thon from '../assets/images/데이터톤.jpeg';
 
 interface SwipeBannerProps {
@@ -25,7 +25,7 @@ export function SwipeBanner({ onNavigate }: SwipeBannerProps) {
       id: 2,
       title: 'DArt-B Webzine',
       description: '다트비의 학술활동을 담은 웹진',
-      image: 'https://images.unsplash.com/photo-1710799885122-428e63eff691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBtYWdhemluZSUyMGRlc2lnbnxlbnwxfHx8fDE3NTk1NzUyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: dartb_webzine,
       page: 'webzin'
     },
     {
