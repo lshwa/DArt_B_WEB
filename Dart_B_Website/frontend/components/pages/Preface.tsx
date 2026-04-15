@@ -50,7 +50,7 @@ export function Preface() {
 
             {/* Right Side - Professor Photo */}
             <div>
-              <div className="bg-gray-200 rounded-[10px] h-[400px] overflow-hidden">
+              <div className="bg-gray-200 rounded-[10px] h-80 w-64 overflow-hidden flex items-center justify-center">
                 <img
                   src={prof_pict}
                   alt="교수님 증명사진"
