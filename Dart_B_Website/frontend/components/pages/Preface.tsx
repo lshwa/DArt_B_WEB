@@ -15,22 +15,23 @@ export function Preface() {
 
       <main className="pt-8 pb-20">
         <div className="max-w-6xl mx-auto px-6">
-          {/* Professor Introduction */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-[#0B2447] mb-6 leading-snug">
-              {headingLines.map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  {i < headingLines.length - 1 && <br />}
-                </React.Fragment>
-              ))}
-            </h2>
-          </div>
+          {/* 🔥 제목 + 본문 + 사진을 하나의 같은 높이 블록으로 묶음 */}
+          <div className="grid md:grid-cols-3 gap-12 items-stretch">
+            {/* Left Side - Heading + Message */}
+            <div className="md:col-span-2 flex flex-col">
+              {/* Professor Introduction */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-[#0B2447] mb-6 leading-snug">
+                  {headingLines.map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < headingLines.length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </h2>
+              </div>
 
-          <div className="grid md:grid-cols-3 gap-12 items-start">
-            {/* Left Side - Message */}
-            <div className="md:col-span-2">
-              <div className="prose prose-lg text-gray-700 leading-relaxed space-y-6 max-w-none">
+              <div className="prose prose-lg text-gray-700 leading-relaxed space-y-6 max-w-none flex-1">
                 <p>{getText('preface.body1')}</p>
                 <p>{getText('preface.body2')}</p>
                 <p>{getText('preface.body3')}</p>
@@ -38,19 +39,19 @@ export function Preface() {
             </div>
 
             {/* Right Side - Professor Card */}
-            <div className="flex justify-center items-start -mt-6">
-              <div className="w-80 bg-gray-100 rounded-[18px] p-5 border border-gray-200 shadow-sm">
-                {/* Photo */}
-                <div className="w-full h-[360px] bg-white rounded-[14px] overflow-hidden flex items-center justify-center">
+            <div className="flex">
+              <div className="w-full bg-gray-100 rounded-[18px] p-5 border border-gray-200 shadow-sm flex flex-col h-full">
+                {/* Photo area */}
+                <div className="flex-1 bg-white rounded-[14px] overflow-hidden flex items-center justify-center min-h-0">
                   <img
                     src={prof_pict}
                     alt="교수님 증명사진"
-                    className="h-full object-contain"
+                    className="max-h-full max-w-full object-contain"
                   />
                 </div>
 
-                {/* Name + Signature area inside the card */}
-                <div className="mt-5 text-center">
+                {/* Name + Signature */}
+                <div className="mt-5 text-center shrink-0">
                   <p className="text-2xl font-bold text-[#0B2447]">서용원</p>
 
                   <div className="mt-4 flex justify-center">
