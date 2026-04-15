@@ -42,7 +42,7 @@ export function Preface() {
             <div className="flex">
               <div className="w-full bg-gray-100 rounded-[18px] p-5 border border-gray-200 shadow-sm flex flex-col h-full">
                 {/* Photo area */}
-                <div className="flex-1 bg-white rounded-[14px] overflow-hidden flex items-center justify-center min-h-0">
+                <div className="bg-white rounded-[14px] overflow-hidden flex items-center justify-center h-64">
                   <img
                     src={prof_pict}
                     alt="교수님 증명사진"
