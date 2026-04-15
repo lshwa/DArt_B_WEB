@@ -49,13 +49,24 @@ export function Preface() {
             </div>
 
             {/* Right Side - Professor Photo */}
-            <div>
-              <div className="bg-gray-200 rounded-[10px] h-80 w-64 overflow-hidden flex items-center justify-center">
-                <img
-                  src={prof_pict}
-                  alt="교수님 증명사진"
-                  className="w-full h-full object-cover object-top"
-                />  
+            <div className="flex items-start justify-center pt-4">
+              <div className="bg-gray-100 rounded-[16px] p-4 shadow-sm border border-gray-200">
+                
+                <div className="w-64 h-80 bg-white rounded-[10px] overflow-hidden flex items-center justify-center">
+                  <img
+                    src={prof_pict}
+                    alt="교수님 증명사진"
+                    className="h-full object-contain"
+                  />
+                </div>
+
+                <div className="text-center mt-3">
+                  <p className="font-semibold text-lg">서용원</p>
+                  <button className="mt-2 px-4 py-2 bg-gray-200 rounded-md text-sm text-gray-600">
+                    친필 싸인
+                  </button>
+                </div>
+
               </div>
             </div>
           </div>
