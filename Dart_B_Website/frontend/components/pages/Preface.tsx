@@ -7,7 +7,6 @@ import prof_pict from '../../assets/images/교수님증명사진.png';
 export function Preface() {
   const { getText } = useSiteTextContext();
 
-  // The heading may contain a literal \n in the stored value
   const headingLines = getText('preface.heading').split('\n');
 
   return (
@@ -16,6 +15,7 @@ export function Preface() {
       
       <main className="pt-8 pb-20">
         <div className="max-w-6xl mx-auto px-6">
+          
           {/* Professor Introduction */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-[#0B2447] mb-6">
@@ -28,7 +28,9 @@ export function Preface() {
             </h2>
           </div>
 
+          {/* 핵심 레이아웃 */}
           <div className="grid md:grid-cols-3 gap-12 items-start">
+            
             {/* Left Side - Message */}
             <div className="md:col-span-2">
               <div className="prose prose-lg text-gray-700 leading-relaxed space-y-6">
@@ -48,8 +50,8 @@ export function Preface() {
               </div>
             </div>
 
-            {/* Right Side - Professor Photo */}
-            <div className="flex items-start justify-center pt-4">
+            {/* Right Side - Professor Photo (수정된 부분) */}
+            <div className="flex justify-center items-start -mt-2">
               <div className="bg-gray-100 rounded-[16px] p-4 shadow-sm border border-gray-200">
                 
                 <div className="w-64 h-80 bg-white rounded-[10px] overflow-hidden flex items-center justify-center">
@@ -60,15 +62,9 @@ export function Preface() {
                   />
                 </div>
 
-                <div className="text-center mt-3">
-                  <p className="font-semibold text-lg">서용원</p>
-                  <button className="mt-2 px-4 py-2 bg-gray-200 rounded-md text-sm text-gray-600">
-                    친필 싸인
-                  </button>
-                </div>
-
               </div>
             </div>
+
           </div>
 
           {/* Career History */}
@@ -76,6 +72,7 @@ export function Preface() {
             <h3 className="text-2xl font-bold text-[#0B2447] text-center mb-8">약력</h3>
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4">
+                
                 <div className="flex items-start space-x-4">
                   <span className="font-bold text-[#0B2447] min-w-16">2020</span>
                   <span className="font-medium min-w-32">중앙대학교</span>
@@ -99,9 +96,11 @@ export function Preface() {
                   <span className="font-medium min-w-32">학계 경력</span>
                   <span className="text-gray-700">박사학위 취득 및 연구 활동 시작</span>
                 </div>
+
               </div>
             </div>
           </div>
+
         </div>
       </main>
     </div>
