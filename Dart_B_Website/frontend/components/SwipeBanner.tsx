@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import dartb_night from '../assets/images/다트비의 밤.jpg';
-import dartb_webzine from '../assets/images/다트비_웹진.png'; // 이미지 추가 해야 함. 
-import dartb_data_thon from '../assets/images/데이터톤.jpeg';
+import dartb_night from '../assets/images/다트비의밤.png';
+import dartb_webzine from '../assets/images/웹진.png'; // 이미지 추가 해야 함. 
+import dartb_data_thon from '../assets/images/데이터톤.png';
 
 interface SwipeBannerProps {
   onNavigate: (page: string) => void;
