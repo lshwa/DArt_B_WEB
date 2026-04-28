@@ -17,7 +17,7 @@ export function SwipeBanner({ onNavigate }: SwipeBannerProps) {
     {
       id: 1,
       title: '다트비의 밤',
-      description: '학술적 교류를 넘어 진정한 공동체 문화를 만들어갑니다',
+      //description: '학술적 교류를 넘어 진정한 공동체 문화를 만들어갑니다',
       image: dartb_night,
       page: 'networking'
     },
