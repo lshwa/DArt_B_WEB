@@ -16,22 +16,22 @@ export function SwipeBanner({ onNavigate }: SwipeBannerProps) {
   const banners = [
     {
       id: 1,
-      title: '다트비의 밤',
+      //title: '다트비의 밤',
       //description: '학술적 교류를 넘어 진정한 공동체 문화를 만들어갑니다',
       image: dartb_night,
       page: 'networking'
     },
     {
       id: 2,
-      title: 'DArt-B Webzine',
-      description: '다트비의 학술활동을 담은 웹진',
+      //title: 'DArt-B Webzine',
+      //description: '다트비의 학술활동을 담은 웹진',
       image: dartb_webzine,
       page: 'webzin'
     },
     {
       id: 3,
-      title: 'DArt-B DATA-THON',
-      description: '다트비의 데이터톤을 소개한 기록',
+      //title: 'DArt-B DATA-THON',
+      //description: '다트비의 데이터톤을 소개한 기록',
       image: dartb_data_thon,
       page: 'data-thon'
     }
