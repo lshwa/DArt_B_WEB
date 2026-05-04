@@ -4,11 +4,6 @@ import { Button } from '../ui/button';
 import { Download } from 'lucide-react';
 
 export function Rules() {
-  const handlePDFDownload = () => {
-    // In a real app, this would trigger PDF download
-    alert('DArt-B 회칙 PDF 다운로드가 시작됩니다.');
-  };
-
   return (
     <div className="min-h-screen">
       <PageBanner title="RULES" />
@@ -70,13 +65,13 @@ export function Rules() {
             <p className="text-gray-600 mb-6">
               전체 회칙은 PDF 파일로 다운로드하여 확인하실 수 있습니다.
             </p>
-            <Button 
-              onClick={handlePDFDownload}
-              className="bg-[#0B2447] hover:bg-[#0a1f3a] text-white px-8 py-3"
-            >
-              <Download className="w-5 h-5 mr-2" />
-              PDF 다운받기
-            </Button>
+
+            <a href="/files/dartb_rules.pdf" download="DArt-B_회칙.pdf">
+              <Button className="bg-[#0B2447] hover:bg-[#0a1f3a] text-white px-8 py-3">
+                <Download className="w-5 h-5 mr-2" />
+                PDF 다운받기
+              </Button>
+            </a>
           </div>
         </div>
       </main>
