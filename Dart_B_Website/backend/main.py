@@ -11,7 +11,7 @@ from urllib.parse import unquote
 from pathlib import Path
 
 from settings import settings
-from database import get_db, init_db, Admin, Member, Setting
+from database import get_db, init_db, Admin, Member, Setting, EmailSubscriber
 from file_upload import save_uploaded_file, delete_file, get_file_list
 from auth import (
     verify_password,
@@ -33,7 +33,7 @@ from schemas import (
 )
 from pdf_parser import parse_pdf, parse_csv_from_pdf
 from google_forms import sync_with_service_account
-from google_drive import list_pdfs_in_folder
+from google_drive import list_pdfs_in_folder, list_forms_in_folder
 
 app = FastAPI(title="DArt-B Backend", version="1.0.0")
 
@@ -902,3 +902,76 @@ async def list_webzines():
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e)
         )
+
+
+# ==================== Recruiting ====================
+
+@app.get("/api/v1/recruiting/form")
+async def get_recruiting_form():
+    """구글 드라이브 폴더에서 최신 지원서 구글폼 URL 조회"""
+    folder_id = settings.GOOGLE_DRIVE_FORMS_FOLDER_ID
+    if not folder_id:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Forms folder not configured. Set GOOGLE_DRIVE_FORMS_FOLDER_ID environment variable."
+        )
+    try:
+        forms = await list_forms_in_folder(folder_id)
+        if not forms:
+            return {"form": None}
+        return {"form": forms[0]}  # 이름 내림차순 정렬 → 가장 최신 기수
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=str(e)
+        )
+
+
+@app.post("/api/v1/recruiting/subscribe")
+async def subscribe_email(
+    payload: dict,
+    db: Session = Depends(get_db)
+):
+    """모집알림 이메일 등록"""
+    email = (payload.get("email") or "").strip().lower()
+    if not email:
+        raise HTTPException(status_code=400, detail="이메일을 입력해주세요.")
+
+    existing = db.query(EmailSubscriber).filter(EmailSubscriber.email == email).first()
+    if existing:
+        return {"message": "이미 등록된 이메일입니다."}
+
+    subscriber = EmailSubscriber(email=email)
+    db.add(subscriber)
+    db.commit()
+    return {"message": "모집알림 신청이 완료되었습니다."}
+
+
+@app.get("/api/v1/recruiting/subscribers")
+async def list_subscribers(
+    current_admin: Admin = Depends(get_current_admin),
+    db: Session = Depends(get_db)
+):
+    """모집알림 구독자 목록 조회 (관리자 전용)"""
+    subscribers = db.query(EmailSubscriber).order_by(EmailSubscriber.created_at.desc()).all()
+    return {
+        "subscribers": [
+            {"id": s.id, "email": s.email, "created_at": s.created_at.isoformat()}
+            for s in subscribers
+        ]
+    }
+
+
+@app.delete("/api/v1/recruiting/subscribers/{subscriber_id}")
+async def delete_subscriber(
+    subscriber_id: int,
+    current_admin: Admin = Depends(get_current_admin),
+    db: Session = Depends(get_db)
+):
+    """모집알림 구독자 삭제 (관리자 전용)"""
+    subscriber = db.query(EmailSubscriber).filter(EmailSubscriber.id == subscriber_id).first()
+    if not subscriber:
+        raise HTTPException(status_code=404, detail="구독자를 찾을 수 없습니다.")
+    db.delete(subscriber)
+    db.commit()
+    return {"message": "삭제되었습니다."}

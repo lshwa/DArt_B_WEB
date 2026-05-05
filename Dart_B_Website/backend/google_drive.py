@@ -104,3 +104,40 @@ async def list_pdfs_in_folder(folder_id: str) -> List[Dict]:
         })
 
     return result
+
+
+async def list_forms_in_folder(folder_id: str) -> List[Dict]:
+    """List Google Forms in a Drive folder, sorted by name descending."""
+    credentials = get_service_account_credentials()
+    if not credentials:
+        raise ValueError("Service account credentials not configured")
+
+    token = await get_drive_access_token(credentials)
+    if not token:
+        raise ValueError("Failed to obtain Drive access token")
+
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        resp = await client.get(
+            "https://www.googleapis.com/drive/v3/files",
+            headers={"Authorization": f"Bearer {token}"},
+            params={
+                "q": f"'{folder_id}' in parents and mimeType='application/vnd.google-apps.form' and trashed=false",
+                "fields": "files(id,name,createdTime)",
+                "orderBy": "name desc",
+            },
+        )
+        resp.raise_for_status()
+        files = resp.json().get("files", [])
+
+    result = []
+    for f in files:
+        m = re.search(r"(\d+)기", f["name"])
+        generation = int(m.group(1)) if m else None
+        result.append({
+            "id": f["id"],
+            "name": f["name"],
+            "generation": generation,
+            "form_url": f"https://docs.google.com/forms/d/{f['id']}/viewform",
+        })
+
+    return result

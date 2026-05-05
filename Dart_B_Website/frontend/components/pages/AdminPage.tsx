@@ -582,6 +582,11 @@ export function AdminPage({ onNavigate, onLogin }: AdminPageProps) {
           </div>
         </div>
 
+        {/* Email Subscribers */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <EmailSubscriberManager />
+        </div>
+
         {/* Filter */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="flex items-center gap-4">
@@ -662,6 +667,105 @@ export function AdminPage({ onNavigate, onLogin }: AdminPageProps) {
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+// 모집알림 이메일 구독자 관리 컴포넌트
+function EmailSubscriberManager() {
+  const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string) || 'http://localhost:8000/api/v1';
+  const [subscribers, setSubscribers] = useState<{ id: number; email: string; created_at: string }[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const load = async () => {
+    setIsLoading(true);
+    try {
+      const token = localStorage.getItem('dartb_admin_token');
+      const res = await fetch(`${API_BASE_URL}/recruiting/subscribers`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      setSubscribers(data.subscribers ?? []);
+    } catch {
+      /* ignore */
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const handleDelete = async (id: number) => {
+    if (!confirm('이 이메일을 삭제하시겠습니까?')) return;
+    const token = localStorage.getItem('dartb_admin_token');
+    await fetch(`${API_BASE_URL}/recruiting/subscribers/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setSubscribers((prev) => prev.filter((s) => s.id !== id));
+  };
+
+  const handleCopyAll = () => {
+    const emails = subscribers.map((s) => s.email).join('\n');
+    navigator.clipboard.writeText(emails);
+    alert('이메일 목록이 클립보드에 복사되었습니다.');
+  };
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-bold text-[#0B2447]">모집알림 신청자 목록</h3>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={load} disabled={isLoading}>
+            <RefreshCw className={`w-4 h-4 mr-1 ${isLoading ? 'animate-spin' : ''}`} />
+            새로고침
+          </Button>
+          {subscribers.length > 0 && (
+            <Button variant="outline" size="sm" onClick={handleCopyAll}>
+              <Download className="w-4 h-4 mr-1" />
+              전체 복사
+            </Button>
+          )}
+        </div>
+      </div>
+
+      {subscribers.length === 0 ? (
+        <p className="text-gray-400 text-sm py-4 text-center">신청자가 없습니다.</p>
+      ) : (
+        <div className="border rounded-lg overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="text-left p-3 font-medium text-gray-600">이메일</th>
+                <th className="text-left p-3 font-medium text-gray-600">신청일</th>
+                <th className="p-3 w-16"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {subscribers.map((s) => (
+                <tr key={s.id} className="border-t hover:bg-gray-50">
+                  <td className="p-3">{s.email}</td>
+                  <td className="p-3 text-gray-500">{new Date(s.created_at).toLocaleDateString('ko-KR')}</td>
+                  <td className="p-3 text-center">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDelete(s.id)}
+                      className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1 h-auto"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="bg-gray-50 px-3 py-2 text-xs text-gray-500 border-t">
+            총 {subscribers.length}명
+          </div>
+        </div>
+      )}
     </div>
   );
 }

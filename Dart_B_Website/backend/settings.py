@@ -40,8 +40,10 @@ class Settings:
     GOOGLE_API_KEY: str = os.getenv("GOOGLE_SHEETS_API_KEY", "") or os.getenv("GOOGLE_API_KEY", "")
 
     # Google Drive Integration
-    # Folder ID from Drive URL: drive.google.com/drive/folders/FOLDER_ID
+    # Webzine folder ID from: drive.google.com/drive/folders/FOLDER_ID
     GOOGLE_DRIVE_FOLDER_ID: str = os.getenv("GOOGLE_DRIVE_FOLDER_ID", "")
+    # Recruiting forms folder ID
+    GOOGLE_DRIVE_FORMS_FOLDER_ID: str = os.getenv("GOOGLE_DRIVE_FORMS_FOLDER_ID", "")
 
     @property
     def has_google_sheets_config(self) -> bool:

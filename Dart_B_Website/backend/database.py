@@ -59,6 +59,15 @@ class Member(Base):
     notes = Column(Text)  # 추가 메모
 
 
+# 모집알림 이메일 구독 모델
+class EmailSubscriber(Base):
+    __tablename__ = "email_subscribers"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+
 # 데이터베이스 초기화
 def init_db():
     Base.metadata.create_all(bind=engine)
