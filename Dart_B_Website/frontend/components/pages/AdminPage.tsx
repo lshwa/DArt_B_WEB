@@ -680,7 +680,7 @@ function EmailSubscriberManager() {
   const load = async () => {
     setIsLoading(true);
     try {
-      const token = localStorage.getItem('dartb_admin_token');
+      const token = localStorage.getItem('access_token');
       const res = await fetch(`${API_BASE_URL}/recruiting/subscribers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -698,7 +698,7 @@ function EmailSubscriberManager() {
 
   const handleDelete = async (id: number) => {
     if (!confirm('이 이메일을 삭제하시겠습니까?')) return;
-    const token = localStorage.getItem('dartb_admin_token');
+    const token = localStorage.getItem('access_token');
     await fetch(`${API_BASE_URL}/recruiting/subscribers/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
