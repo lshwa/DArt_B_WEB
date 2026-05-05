@@ -4,6 +4,8 @@ import { DynamicImage } from '../common/DynamicImage';
 import { BookOpen, Users, Presentation, RefreshCw } from 'lucide-react';
 import { useDynamicList, DynamicItem } from '../../src/useDynamicList';
 
+const SESSION_IMAGE_KEYS = ['curriculum.session1', 'curriculum.session2', 'curriculum.session3'] as const;
+
 interface CurriculumItem extends DynamicItem {
   title: string;
   description: string;
@@ -82,10 +84,13 @@ export function Curriculum() {
             <h2 className="text-3xl font-bold text-[#0B2447] text-center mb-12">정규 세션 활동</h2>
             <div className="text-center mb-12">
               <div className="grid md:grid-cols-3 gap-6 mb-8">
-                {['세션 활동 사진 1', '세션 활동 사진 2', '세션 활동 사진 3'].map((label) => (
-                  <div key={label} className="bg-gray-100 rounded-[10px] h-40 flex items-center justify-center">
-                    <span className="text-gray-500">{label}</span>
-                  </div>
+                {SESSION_IMAGE_KEYS.map((key) => (
+                  <DynamicImage
+                    key={key}
+                    imageKey={key}
+                    alt="세션 활동 사진"
+                    className="w-full h-40 object-cover rounded-[10px]"
+                  />
                 ))}
               </div>
               <p className="text-gray-700 leading-relaxed">

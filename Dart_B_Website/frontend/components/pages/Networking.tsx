@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageBanner } from '../common/PageBanner';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { DynamicImage } from '../common/DynamicImage';
 import { Wine, Users, Calendar } from 'lucide-react';
 import { useSiteTextContext } from '../../src/SiteTextContext';
 
@@ -28,8 +28,8 @@ export function Networking() {
             {/* First Section */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1702737832079-ed5864397f92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwY2FtcHVzJTIwa29yZWF8ZW58MXx8fHwxNTk1NzI5NjV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                <DynamicImage
+                  imageKey="networking.event"
                   alt="DArt-B의 밤 이벤트"
                   className="w-full h-80 object-cover rounded-[10px] shadow-lg"
                   style={{ filter: 'drop-shadow(0px 0px 25px rgba(0,0,0,0.1))' }}
@@ -62,8 +62,8 @@ export function Networking() {
                 </p>
               </div>
               <div className="order-1 md:order-2">
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1758691736764-2a88e313b1f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHlzaXMlMjBzZXNzaW9ufGVufDF8fHx8MTc1OTU3Mjk2N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+                <DynamicImage
+                  imageKey="networking.activity"
                   alt="네트워킹 활동"
                   className="w-full h-80 object-cover rounded-[10px] shadow-lg"
                   style={{ filter: 'drop-shadow(0px 0px 25px rgba(0,0,0,0.1))' }}
@@ -74,8 +74,8 @@ export function Networking() {
             {/* Third Section */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1758691736804-4e88c52ad58b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9qZWN0JTIwdGVhbSUyMGNvbGxhYm9yYXRpb258ZW58MXx8fHwxNzU5NTcyOTcxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                <DynamicImage
+                  imageKey="networking.group"
                   alt="단체 사진"
                   className="w-full h-80 object-cover rounded-[10px] shadow-lg"
                   style={{ filter: 'drop-shadow(0px 0px 25px rgba(0,0,0,0.1))' }}
