@@ -39,6 +39,10 @@ class Settings:
     # API key for public sheets - supports both GOOGLE_SHEETS_API_KEY and GOOGLE_API_KEY
     GOOGLE_API_KEY: str = os.getenv("GOOGLE_SHEETS_API_KEY", "") or os.getenv("GOOGLE_API_KEY", "")
 
+    # Google Drive Integration
+    # Folder ID from Drive URL: drive.google.com/drive/folders/FOLDER_ID
+    GOOGLE_DRIVE_FOLDER_ID: str = os.getenv("GOOGLE_DRIVE_FOLDER_ID", "")
+
     @property
     def has_google_sheets_config(self) -> bool:
         """Check if Google Sheets integration is configured"""

@@ -33,6 +33,7 @@ from schemas import (
 )
 from pdf_parser import parse_pdf, parse_csv_from_pdf
 from google_forms import sync_with_service_account
+from google_drive import list_pdfs_in_folder
 
 app = FastAPI(title="DArt-B Backend", version="1.0.0")
 
@@ -881,4 +882,23 @@ async def upload_logo(
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Upload error: {str(e)}"
+        )
+
+
+@app.get("/api/v1/webzine/list")
+async def list_webzines():
+    """구글 드라이브 웹진 폴더에서 PDF 목록 조회"""
+    folder_id = settings.GOOGLE_DRIVE_FOLDER_ID
+    if not folder_id:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Drive folder not configured. Set GOOGLE_DRIVE_FOLDER_ID environment variable."
+        )
+    try:
+        webzines = await list_pdfs_in_folder(folder_id)
+        return {"webzines": webzines}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=str(e)
         )
