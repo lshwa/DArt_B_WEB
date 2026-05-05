@@ -4,7 +4,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { siteImagesApi, SiteImageMap } from '../../src/api';
-import { useSiteImages } from '../../src/useSiteImages';
+import { useSiteImageContext } from '../../src/SiteImageContext';
 import { Upload, Link, RefreshCw, Image as ImageIcon, Check, X } from 'lucide-react';
 
 interface ImageItem {
@@ -59,7 +59,7 @@ const IMAGE_CATEGORIES: ImageCategory[] = [
 ];
 
 export function SiteImageManager() {
-  const { images, isLoading, refresh } = useSiteImages();
+  const { images, isLoading, refresh } = useSiteImageContext();
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [uploadMode, setUploadMode] = useState<'file' | 'url'>('file');
