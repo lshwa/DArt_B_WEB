@@ -115,20 +115,24 @@ export function Recruiting() {
             <div className="flex flex-col items-center gap-4">
               {formLoading ? (
                 <RefreshCw className="w-6 h-6 animate-spin text-[#0B2447]" />
-              ) : isRecruitingOpen ? (
-                <a href={formInfo!.form_url} target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#0B2447] hover:bg-[#0a1f3a] text-white px-10 py-3 text-lg">
-                    <ExternalLink className="w-5 h-5 mr-2" />
-                    {formInfo!.generation ? `${formInfo!.generation}기 지원하기` : '지원하기'}
-                  </Button>
-                </a>
               ) : (
-                <div className="space-y-3 text-center">
-                  <p className="text-gray-500 text-lg">현재 모집 기간이 아닙니다.</p>
+                <div className="flex flex-col items-center gap-3">
+                  {isRecruitingOpen ? (
+                    <a href={formInfo!.form_url} target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-[#0B2447] hover:bg-[#0a1f3a] text-white px-10 py-3 text-lg">
+                        <ExternalLink className="w-5 h-5 mr-2" />
+                        {formInfo!.generation ? `${formInfo!.generation}기 지원하기` : '지원하기'}
+                      </Button>
+                    </a>
+                  ) : (
+                    <p className="text-gray-500 text-lg">현재 모집 기간이 아닙니다.</p>
+                  )}
+
+                  {/* 모집알림 신청 - 항상 표시 */}
                   <Dialog open={showEmailDialog} onOpenChange={setShowEmailDialog}>
                     <DialogTrigger asChild>
-                      <Button className="bg-[#0B2447] hover:bg-[#0a1f3a] text-white px-8 py-3 text-lg">
-                        <Bell className="w-5 h-5 mr-2" />
+                      <Button variant="outline" className="px-8 py-3 text-base border-[#0B2447] text-[#0B2447] hover:bg-[#0B2447] hover:text-white">
+                        <Bell className="w-4 h-4 mr-2" />
                         모집알림 신청하기
                       </Button>
                     </DialogTrigger>
