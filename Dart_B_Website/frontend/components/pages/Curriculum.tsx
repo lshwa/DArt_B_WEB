@@ -17,19 +17,19 @@ const DEFAULT_CURRICULUM: CurriculumItem[] = [
     id: '1',
     title: '토이프로젝트',
     description: '학기 중 진행되는 토이프로젝트를 통해 실제 데이터를 활용한 분석 경험을 쌓습니다. 팀 단위로 진행되며, 기획부터 분석, 발표까지 전 과정을 경험할 수 있습니다.',
-    imageKey: 'curriculum.assignment',
+    imageKey: 'curriculum.toyproject',
   },
   {
     id: '2',
     title: '학술제',
     description: '매 학기 말에 진행되는 학술제에서는 한 학기 동안의 학습 성과를 발표합니다. 개인 또는 팀 프로젝트를 통해 실무 역량을 기르고, 발표 경험을 쌓을 수 있습니다.',
-    imageKey: 'curriculum.study',
+    imageKey: 'curriculum.symposium',
   },
   {
     id: '3',
     title: '지도교수님/연사 특강',
     description: '지도교수님과 외부 전문가를 모신 특강을 통해 최신 트렌드와 실무 노하우를 학습합니다. 이론과 실무를 연결하는 소중한 기회입니다.',
-    imageKey: 'home.curriculum.session',
+    imageKey: 'curriculum.lecture',
   },
 ];
 

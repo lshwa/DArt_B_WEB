@@ -548,9 +548,9 @@ export function AdminPage({ onNavigate, onLogin }: AdminPageProps) {
                 title="커리큘럼 활동 항목"
                 settingKey="curriculum.items"
                 defaults={[
-                  { id: '1', title: '토이프로젝트', description: '학기 중 진행되는 토이프로젝트를 통해 실제 데이터를 활용한 분석 경험을 쌓습니다.', imageKey: 'curriculum.assignment' },
-                  { id: '2', title: '학술제', description: '매 학기 말에 진행되는 학술제에서는 한 학기 동안의 학습 성과를 발표합니다.', imageKey: 'curriculum.study' },
-                  { id: '3', title: '지도교수님/연사 특강', description: '지도교수님과 외부 전문가를 모신 특강을 통해 최신 트렌드와 실무 노하우를 학습합니다.', imageKey: 'home.curriculum.session' },
+                  { id: '1', title: '토이프로젝트', description: '학기 중 진행되는 토이프로젝트를 통해 실제 데이터를 활용한 분석 경험을 쌓습니다.', imageKey: 'curriculum.toyproject' },
+                  { id: '2', title: '학술제', description: '매 학기 말에 진행되는 학술제에서는 한 학기 동안의 학습 성과를 발표합니다.', imageKey: 'curriculum.symposium' },
+                  { id: '3', title: '지도교수님/연사 특강', description: '지도교수님과 외부 전문가를 모신 특강을 통해 최신 트렌드와 실무 노하우를 학습합니다.', imageKey: 'curriculum.lecture' },
                 ]}
                 fields={[
                   { key: 'title', label: '제목', placeholder: '예: 토이프로젝트' },
