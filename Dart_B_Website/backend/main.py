@@ -136,8 +136,14 @@ async def startup_event():
         ("site_image.datathon.angnal", "https://images.unsplash.com/photo-1758691736804-4e88c52ad58b?w=600&auto=format&fit=crop&q=60", "앵날다쏘 이미지"),
         ("site_image.datathon.aruda", "https://images.unsplash.com/photo-1758691736764-2a88e313b1f2?w=600&auto=format&fit=crop&q=60", "아러다 이미지"),
         ("site_image.datathon.kukudart", "https://images.unsplash.com/photo-1587116987928-21e47bd76cd2?w=600&auto=format&fit=crop&q=60", "쿠쿠다트 이미지"),
-        ("site_image.curriculum.assignment", "https://images.unsplash.com/photo-1589380905297-abf6a0a8e450?w=600&auto=format&fit=crop&q=60", "정규 과제 이미지"),
-        ("site_image.curriculum.study", "https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=600&auto=format&fit=crop&q=60", "스터디 그룹 이미지"),
+        ("site_image.curriculum.session1", "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=60", "커리큘럼 세션 활동 사진 1"),
+        ("site_image.curriculum.session2", "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&auto=format&fit=crop&q=60", "커리큘럼 세션 활동 사진 2"),
+        ("site_image.curriculum.session3", "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&auto=format&fit=crop&q=60", "커리큘럼 세션 활동 사진 3"),
+        ("site_image.curriculum.toyproject", "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60", "커리큘럼 — 토이프로젝트 이미지"),
+        ("site_image.curriculum.symposium", "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=60", "커리큘럼 — 학술제 이미지"),
+        ("site_image.curriculum.lecture", "https://images.unsplash.com/photo-1560439514-4e9645039924?w=600&auto=format&fit=crop&q=60", "커리큘럼 — 지도교수님/연사 특강 이미지"),
+        ("site_image.curriculum.assignment", "https://images.unsplash.com/photo-1589380905297-abf6a0a8e450?w=600&auto=format&fit=crop&q=60", "커리큘럼 — 정규 과제 이미지"),
+        ("site_image.curriculum.study", "https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=600&auto=format&fit=crop&q=60", "커리큘럼 — 소그룹 스터디 이미지"),
     ]
 
     for key, value, description in site_images_defaults:
@@ -231,12 +237,32 @@ async def startup_event():
 
     # 커리큘럼 항목
     curriculum_key = "curriculum.items"
-    if not db.query(Setting).filter(Setting.key == curriculum_key).first():
+    curriculum_setting = db.query(Setting).filter(Setting.key == curriculum_key).first()
+    if not curriculum_setting:
         db.add(Setting(key=curriculum_key, value=_json.dumps([
-            {"id": "1", "title": "토이프로젝트", "description": "학기 중 진행되는 토이프로젝트를 통해 실제 데이터를 활용한 분석 경험을 쌓습니다. 팀 단위로 진행되며, 기획부터 분석, 발표까지 전 과정을 경험할 수 있습니다.", "imageKey": "curriculum.assignment"},
-            {"id": "2", "title": "학술제", "description": "매 학기 말에 진행되는 학술제에서는 한 학기 동안의 학습 성과를 발표합니다. 개인 또는 팀 프로젝트를 통해 실무 역량을 기르고, 발표 경험을 쌓을 수 있습니다.", "imageKey": "curriculum.study"},
-            {"id": "3", "title": "지도교수님/연사 특강", "description": "지도교수님과 외부 전문가를 모신 특강을 통해 최신 트렌드와 실무 노하우를 학습합니다. 이론과 실무를 연결하는 소중한 기회입니다.", "imageKey": "home.curriculum.session"},
+            {"id": "1", "title": "토이프로젝트", "description": "학기 중 진행되는 토이프로젝트를 통해 실제 데이터를 활용한 분석 경험을 쌓습니다. 팀 단위로 진행되며, 기획부터 분석, 발표까지 전 과정을 경험할 수 있습니다.", "imageKey": "curriculum.toyproject"},
+            {"id": "2", "title": "학술제", "description": "매 학기 말에 진행되는 학술제에서는 한 학기 동안의 학습 성과를 발표합니다. 개인 또는 팀 프로젝트를 통해 실무 역량을 기르고, 발표 경험을 쌓을 수 있습니다.", "imageKey": "curriculum.symposium"},
+            {"id": "3", "title": "지도교수님/연사 특강", "description": "지도교수님과 외부 전문가를 모신 특강을 통해 최신 트렌드와 실무 노하우를 학습합니다. 이론과 실무를 연결하는 소중한 기회입니다.", "imageKey": "curriculum.lecture"},
         ], ensure_ascii=False), description="커리큘럼 활동 항목 (JSON)"))
+    else:
+        # 기존 DB의 imageKey를 새 키로 마이그레이션
+        try:
+            items = _json.loads(curriculum_setting.value)
+            migration_map = {
+                "curriculum.assignment": "curriculum.toyproject",
+                "curriculum.study": "curriculum.symposium",
+                "home.curriculum.session": "curriculum.lecture",
+            }
+            changed = False
+            for item in items:
+                old_key = item.get("imageKey", "")
+                if old_key in migration_map:
+                    item["imageKey"] = migration_map[old_key]
+                    changed = True
+            if changed:
+                curriculum_setting.value = _json.dumps(items, ensure_ascii=False)
+        except Exception:
+            pass
 
     # 모집 FAQ
     faq_key = "recruiting.faq"

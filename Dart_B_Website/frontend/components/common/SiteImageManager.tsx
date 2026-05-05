@@ -46,8 +46,14 @@ const IMAGE_CATEGORIES: ImageCategory[] = [
   {
     name: '커리큘럼',
     items: [
-      { key: 'curriculum.assignment', label: '정규 과제', description: '커리큘럼 페이지 정규 과제 이미지' },
-      { key: 'curriculum.study', label: '스터디 그룹', description: '커리큘럼 페이지 스터디 그룹 이미지' },
+      { key: 'curriculum.session1', label: '세션 활동 사진 1', description: '커리큘럼 페이지 — 정규 세션 활동 섹션 사진 1 (3장 중 첫 번째)' },
+      { key: 'curriculum.session2', label: '세션 활동 사진 2', description: '커리큘럼 페이지 — 정규 세션 활동 섹션 사진 2 (3장 중 두 번째)' },
+      { key: 'curriculum.session3', label: '세션 활동 사진 3', description: '커리큘럼 페이지 — 정규 세션 활동 섹션 사진 3 (3장 중 세 번째)' },
+      { key: 'curriculum.toyproject', label: '토이프로젝트', description: '커리큘럼 페이지 — 토이프로젝트 섹션 대표 이미지' },
+      { key: 'curriculum.symposium', label: '학술제', description: '커리큘럼 페이지 — 학술제 섹션 대표 이미지' },
+      { key: 'curriculum.lecture', label: '지도교수님/연사 특강', description: '커리큘럼 페이지 — 지도교수님·연사 특강 섹션 대표 이미지' },
+      { key: 'curriculum.assignment', label: '정규 과제', description: '커리큘럼 페이지 — 정규 과제 섹션 이미지' },
+      { key: 'curriculum.study', label: '소그룹 스터디', description: '커리큘럼 페이지 — 소그룹 스터디 섹션 이미지' },
     ],
   },
 ];
