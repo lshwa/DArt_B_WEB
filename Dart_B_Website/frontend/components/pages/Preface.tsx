@@ -53,7 +53,7 @@ export function Preface() {
             <div className="flex justify-center">
               <div className="flex flex-col items-center gap-3">
                 {/* Photo */}
-                <div className="overflow-hidden rounded-sm w-44">
+                <div className="overflow-hidden rounded-sm w-[130px]">
                   <img
                     src={prof_pict}
                     alt="교수님 증명사진"
