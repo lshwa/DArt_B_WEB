@@ -44,6 +44,7 @@ const TEXT_CATEGORIES: TextCategory[] = [
       { key: 'preface.body1', label: '인사말 1단락', multiline: true },
       { key: 'preface.body2', label: '인사말 2단락', multiline: true },
       { key: 'preface.body3', label: '인사말 3단락', multiline: true },
+      { key: 'preface.body4', label: '인사말 4단락', multiline: true },
     ],
   },
   {

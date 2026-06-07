@@ -2,7 +2,7 @@ import React from 'react';
 import { PageBanner } from '../common/PageBanner';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useSiteTextContext } from '../../src/SiteTextContext';
-import prof_pict from '../../assets/images/교수님증명사진.png';
+import prof_pict from '../../assets/images/교수님사진.png';
 
 export function Preface() {
   const { getText } = useSiteTextContext();
@@ -35,6 +35,7 @@ export function Preface() {
                 <p>{getText('preface.body1')}</p>
                 <p>{getText('preface.body2')}</p>
                 <p>{getText('preface.body3')}</p>
+                <p>{getText('preface.body4')}</p>
               </div>
             </div>
 
@@ -55,9 +56,12 @@ export function Preface() {
                   <p className="text-2xl font-bold text-[#0B2447]">서용원</p>
 
                   <div className="mt-4 flex justify-center">
-                    <div className="w-40 h-14 bg-gray-200 rounded-md flex items-center justify-center text-gray-500 text-base">
-                      친필 싸인
-                    </div>
+                    <p
+                      style={{ fontFamily: "'Nanum Brush Script', cursive" }}
+                      className="text-4xl text-[#0B2447]"
+                    >
+                      서용원
+                    </p>
                   </div>
                 </div>
               </div>
@@ -72,29 +76,45 @@ export function Preface() {
             <div className="max-w-4xl mx-auto">
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
-                  <span className="font-bold text-[#0B2447] min-w-16">2020</span>
-                  <span className="font-medium min-w-32">중앙대학교</span>
-                  <span className="text-gray-700">경영학부 교수 부임</span>
+                  <span className="font-bold text-[#0B2447] min-w-16">현재</span>
+                  <span className="font-medium min-w-32">연구업적</span>
+                  <span className="text-gray-700">국내외 학술지(SCI, SSCI, KCI 등) 110편 이상 논문 게재</span>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <span className="font-bold text-[#0B2447] min-w-16">2027</span>
+                  <span className="font-medium min-w-32">한국경영과학회(KORMS)</span>
+                  <span className="text-gray-700">회장 (예정)</span>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <span className="font-bold text-[#0B2447] min-w-16">2021</span>
+                  <span className="font-medium min-w-32">한국생산운영관리학회(KOPOMS)</span>
+                  <span className="text-gray-700">회장 역임</span>
                 </div>
 
                 <div className="flex items-start space-x-4">
                   <span className="font-bold text-[#0B2447] min-w-16">2019</span>
                   <span className="font-medium min-w-32">DArt-B</span>
-                  <span className="text-gray-700">데이터 분석 학회 지도교수 역임</span>
+                  <span className="text-gray-700">데이터 분석 학회 지도교수 부임</span>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <span className="font-bold text-[#0B2447] min-w-16">2018</span>
-                  <span className="font-medium min-w-32">연구업적</span>
-                  <span className="text-gray-700">
-                    데이터 사이언스 관련 주요 논문 다수 발표
-                  </span>
+                  <span className="font-bold text-[#0B2447] min-w-16">2009</span>
+                  <span className="font-medium min-w-32">중앙대학교</span>
+                  <span className="text-gray-700">경영학부 교수 부임</span>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <span className="font-bold text-[#0B2447] min-w-16">2015</span>
-                  <span className="font-medium min-w-32">학계 경력</span>
-                  <span className="text-gray-700">박사학위 취득 및 연구 활동 시작</span>
+                  <span className="font-bold text-[#0B2447] min-w-16">2001</span>
+                  <span className="font-medium min-w-32">한국지능정보사회진흥원(NIA)</span>
+                  <span className="text-gray-700">국가정보화센터 선임연구원</span>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <span className="font-bold text-[#0B2447] min-w-16">2001</span>
+                  <span className="font-medium min-w-32">서울대학교</span>
+                  <span className="text-gray-700">공학박사 (산업공학)</span>
                 </div>
               </div>
             </div>
