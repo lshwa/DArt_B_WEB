@@ -42,7 +42,7 @@ export function Preface() {
             <div className="flex">
               <div className="w-full bg-gray-100 rounded-[18px] p-5 border border-gray-200 shadow-sm flex flex-col">
                 {/* Photo area */}
-                <div className="bg-white rounded-[14px] overflow-hidden flex items-center justify-center h-64">
+                <div className="bg-white rounded-[14px] overflow-hidden flex items-center justify-center h-48">
                   <img
                     src={prof_pict}
                     alt="교수님 증명사진"
@@ -50,18 +50,14 @@ export function Preface() {
                   />
                 </div>
 
-                {/* Name + Signature */}
-                <div className="mt-5 text-center shrink-0">
-                  <p className="text-2xl font-bold text-[#0B2447]">서용원</p>
-
-                  <div className="mt-4 flex justify-center">
-                    <p
-                      style={{ fontFamily: "'Nanum Brush Script', cursive" }}
-                      className="text-4xl text-[#0B2447]"
-                    >
-                      서용원
-                    </p>
-                  </div>
+                {/* Signature only */}
+                <div className="mt-4 text-center shrink-0">
+                  <p
+                    style={{ fontFamily: "'Nanum Brush Script', cursive" }}
+                    className="text-4xl text-[#0B2447]"
+                  >
+                    서용원
+                  </p>
                 </div>
               </div>
             </div>
