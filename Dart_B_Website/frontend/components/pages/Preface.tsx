@@ -36,28 +36,37 @@ export function Preface() {
                 <p>{getText('preface.body3')}</p>
                 <p>{getText('preface.body4')}</p>
               </div>
+
+              {/* Sign-off */}
+              <div className="mt-10 flex items-center justify-end gap-4">
+                <span className="text-sm text-gray-600">중앙대학교 DArt-B 데이터분석학회 지도교수</span>
+                <p
+                  style={{ fontFamily: "'Nanum Brush Script', cursive" }}
+                  className="text-4xl text-[#0B2447] leading-none"
+                >
+                  서용원
+                </p>
+              </div>
             </div>
 
             {/* Right Side - Professor Card */}
-            <div className="flex">
-              <div className="w-full bg-gray-100 rounded-[18px] p-5 border border-gray-200 shadow-sm flex flex-col">
-                {/* Photo area */}
-                <div className="bg-white rounded-[14px] overflow-hidden flex items-center justify-center h-48">
+            <div className="flex justify-center">
+              <div className="flex flex-col items-center gap-3">
+                {/* Photo */}
+                <div className="overflow-hidden rounded-sm w-44">
                   <img
                     src={prof_pict}
                     alt="교수님 증명사진"
-                    className="max-h-full max-w-full object-contain"
+                    className="w-full object-cover"
                   />
                 </div>
 
-                {/* Signature only */}
-                <div className="mt-4 text-center shrink-0">
-                  <p
-                    style={{ fontFamily: "'Nanum Brush Script', cursive" }}
-                    className="text-4xl text-[#0B2447]"
-                  >
-                    서용원
-                  </p>
+                {/* Info */}
+                <div className="text-center space-y-0.5">
+                  <p className="text-sm text-gray-500">DArt-B 지도교수</p>
+                  <p className="text-lg font-bold text-[#0B2447] tracking-widest">서 용 원</p>
+                  <p className="text-sm text-gray-600">(중앙대학교 교수)</p>
+                  <p className="text-sm text-gray-600">한국경영과학회 수석부회장</p>
                 </div>
               </div>
             </div>
