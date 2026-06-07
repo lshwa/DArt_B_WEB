@@ -15,10 +15,9 @@ export function Preface() {
 
       <main className="pt-8 pb-20">
         <div className="max-w-6xl mx-auto px-6">
-          {/* 🔥 제목 + 본문 + 사진을 하나의 같은 높이 블록으로 묶음 */}
-          <div className="grid md:grid-cols-3 gap-12 items-stretch">
+          <div className="grid md:grid-cols-3 gap-12 items-start">
             {/* Left Side - Heading + Message */}
-            <div className="md:col-span-2 flex flex-col">
+            <div className="md:col-span-2">
               {/* Professor Introduction */}
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-[#0B2447] mb-6 leading-snug">
@@ -31,7 +30,7 @@ export function Preface() {
                 </h2>
               </div>
 
-              <div className="prose prose-lg text-gray-700 leading-relaxed space-y-6 max-w-none flex-1">
+              <div className="prose prose-lg text-gray-700 leading-relaxed space-y-6 max-w-none">
                 <p>{getText('preface.body1')}</p>
                 <p>{getText('preface.body2')}</p>
                 <p>{getText('preface.body3')}</p>
@@ -41,7 +40,7 @@ export function Preface() {
 
             {/* Right Side - Professor Card */}
             <div className="flex">
-              <div className="w-full bg-gray-100 rounded-[18px] p-5 border border-gray-200 shadow-sm flex flex-col h-full">
+              <div className="w-full bg-gray-100 rounded-[18px] p-5 border border-gray-200 shadow-sm flex flex-col">
                 {/* Photo area */}
                 <div className="bg-white rounded-[14px] overflow-hidden flex items-center justify-center h-64">
                   <img
