@@ -23,14 +23,6 @@ export function Members() {
       const response = await memberApi.getAll({ is_active: true });
       if (response.data) {
         setMembers(response.data);
-        // 멤버가 있으면 첫 번째 기수로 설정
-        if (response.data.length > 0 && !selectedGeneration) {
-          const generations = Array.from(new Set(response.data.map(m => m.generation)))
-            .sort((a, b) => b - a);
-          if (generations.length > 0) {
-            setSelectedGeneration(generations[0].toString());
-          }
-        }
       } else {
         setError(response.error || '멤버 정보를 불러오는데 실패했습니다.');
         console.error('Failed to load members:', response.error);
