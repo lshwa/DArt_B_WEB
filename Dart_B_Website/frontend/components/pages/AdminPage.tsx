@@ -579,6 +579,24 @@ export function AdminPage({ onNavigate, onLogin }: AdminPageProps) {
               />
             </div>
 
+            {/* Recommendations — 추천사 */}
+            <div className="border rounded-lg p-4">
+              <DynamicListManager
+                title="추천사"
+                settingKey="recommendations.items"
+                defaults={[
+                  { id: '1', author: '강영훈', position: '다트비 Founder', content: 'DArt-B에서 학문적 지식을 실무와 연결해 데이터 분석 역량을 키울 수 있었던 시간은 정말 값진 경험이었습니다. 같은 관심사를 가진 동료들과 함께 성장하고 협력했던 경험은 지금도 큰 자산으로 남아 있습니다. 데이터 분석에 관심 있는 분이라면 DArt-B를 통해 저와 같은 값진 경험을 얻어가시길 바랍니다.' },
+                  { id: '2', author: '서효정', position: '다트비 Founder', content: 'DArt-B는 단순히 복잡한 코드를 작성하고 데이터를 추출하여 시각화하는 것에 그치지 않고, 데이터에 기반하여 문제를 스스로 정의하고 인사이트를 도출하여 비즈니스에 도움이 될 수 있는 액션까지 도달하는 능력을 기르는 것을 목적으로 Founder들과 함께 설립한 학회입니다. 이를 위해 스터디와 공모전을 통해 실전 분석 역량을 반복적으로 훈련할 수 있도록 하였고, 저 또한 과정에서 학회원들과 함께 고민하며 성장한 경험이 분석가로서의 중요한 밑거름이 될 수 있었습니다. DArt-B에서 같은 방향성과 목적을 가진 여러 학회원들과 함께한다는 것 자체가 데이터 분석을 시작하는 가장 좋은 시작점이 될 수 있을거라 생각합니다.' },
+                ]}
+                fields={[
+                  { key: 'author', label: '이름', placeholder: '예: 강영훈' },
+                  { key: 'position', label: '소속/직책', placeholder: '예: 다트비 Founder' },
+                  { key: 'content', label: '추천사 내용', multiline: true, placeholder: '추천사 내용을 입력하세요' },
+                ]}
+                renderPreview={(item) => ({ primary: `${item.author} · ${String(item.position ?? '')}`, secondary: String(item.content ?? '') })}
+              />
+            </div>
+
           </div>
         </div>
 

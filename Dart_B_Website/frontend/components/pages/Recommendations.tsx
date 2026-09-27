@@ -1,67 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { PageBanner } from '../common/PageBanner';
 import { Card } from '../ui/card';
 import { Quote, Star } from 'lucide-react';
+import { useDynamicList, DynamicItem } from '../../src/useDynamicList';
 
-interface Recommendation {
-  id: number;
+interface Recommendation extends DynamicItem {
   author: string;
   position: string;
-  generation: number;
   content: string;
-  rating: number;
-  image_url?: string;
+  rating?: number;
 }
 
+const DEFAULT_RECOMMENDATIONS: Recommendation[] = [
+  {
+    id: '1',
+    author: '강영훈',
+    position: '다트비 Founder',
+    content: 'DArt-B에서 학문적 지식을 실무와 연결해 데이터 분석 역량을 키울 수 있었던 시간은 정말 값진 경험이었습니다. 같은 관심사를 가진 동료들과 함께 성장하고 협력했던 경험은 지금도 큰 자산으로 남아 있습니다. 데이터 분석에 관심 있는 분이라면 DArt-B를 통해 저와 같은 값진 경험을 얻어가시길 바랍니다.',
+    rating: 5,
+  },
+  {
+    id: '2',
+    author: '서효정',
+    position: '다트비 Founder',
+    content: 'DArt-B는 단순히 복잡한 코드를 작성하고 데이터를 추출하여 시각화하는 것에 그치지 않고, 데이터에 기반하여 문제를 스스로 정의하고 인사이트를 도출하여 비즈니스에 도움이 될 수 있는 액션까지 도달하는 능력을 기르는 것을 목적으로 Founder들과 함께 설립한 학회입니다. 이를 위해 스터디와 공모전을 통해 실전 분석 역량을 반복적으로 훈련할 수 있도록 하였고, 저 또한 과정에서 학회원들과 함께 고민하며 성장한 경험이 분석가로서의 중요한 밑거름이 될 수 있었습니다. DArt-B에서 같은 방향성과 목적을 가진 여러 학회원들과 함께한다는 것 자체가 데이터 분석을 시작하는 가장 좋은 시작점이 될 수 있을거라 생각합니다.',
+    rating: 5,
+  },
+];
+
 export function Recommendations() {
-  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { items: recommendations, isLoading } = useDynamicList<Recommendation>(
+    'recommendations.items',
+    DEFAULT_RECOMMENDATIONS
+  );
 
-  useEffect(() => {
-    // TODO: API에서 추천사 데이터 가져오기
-    // 임시 데이터
-    const mockRecommendations: Recommendation[] = [
-      {
-        id: 1,
-        author: '김다트',
-        position: '5기 총괄팀장',
-        generation: 5,
-        content: 'DArt-B에서의 경험은 제 인생의 터닝포인트였습니다. 데이터 분석에 대한 체계적인 학습과 실전 프로젝트를 통해 많은 것을 배울 수 있었고, 함께 성장하는 동료들을 만날 수 있어서 정말 행복했습니다.',
-        rating: 5,
-      },
-      {
-        id: 2,
-        author: '이분석',
-        position: '4기 운영팀장',
-        generation: 4,
-        content: 'DArt-B는 단순히 기술을 배우는 곳이 아니라, 비즈니스 인사이트를 도출하는 방법을 체득하는 곳입니다. 정규 세션과 스터디를 통해 실무에 바로 적용할 수 있는 역량을 기를 수 있었습니다.',
-        rating: 5,
-      },
-      {
-        id: 3,
-        author: '박데이터',
-        position: '5기 교육팀장',
-        generation: 5,
-        content: '데이터 분석에 대한 관심만 가지고 있었는데, DArt-B에서 체계적인 커리큘럼과 멘토링을 받으며 전문성을 키울 수 있었습니다. 특히 다양한 프로젝트와 대회 참여를 통해 실전 경험을 쌓을 수 있어서 매우 유익했습니다.',
-        rating: 5,
-      },
-      {
-        id: 4,
-        author: '최협력',
-        position: '4기 대외협력팀장',
-        generation: 4,
-        content: 'DArt-B의 가장 큰 장점은 함께 성장하는 문화입니다. 선배들의 조언과 동기들과의 협업을 통해 단순히 혼자 공부하는 것보다 훨씬 빠르게 성장할 수 있었습니다.',
-        rating: 5,
-      },
-    ];
-
-    setTimeout(() => {
-      setRecommendations(mockRecommendations);
-      setIsLoading(false);
-    }, 500);
-  }, []);
-
-  const renderStars = (rating: number) => {
+  const renderStars = (rating: number = 5) => {
     return Array.from({ length: 5 }).map((_, index) => (
       <Star
         key={index}
@@ -110,7 +83,6 @@ export function Recommendations() {
                     <div className="flex-1">
                       <h3 className="font-bold text-lg text-[#0B2447]">{rec.author}</h3>
                       <p className="text-sm text-gray-600">{rec.position}</p>
-                      <p className="text-xs text-gray-500">{rec.generation}기</p>
                     </div>
                     <Quote className="w-8 h-8 text-[#0B2447] opacity-20 flex-shrink-0" />
                   </div>
